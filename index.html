@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEON RUNNER: Código Cero | Corre. Corta. Entrega el código.</title>
+<meta name="description" content="NEON RUNNER: Código Cero, un endless runner 3D cyberpunk hecho en Unity. Salta, agáchate y corta drones con tu espada hasta llegar a 5000 puntos.">
+<meta name="theme-color" content="#06030f">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06030f;--bg2:#0d0820;--cy:#00f0ff;--mg:#ff2bd6;--ye:#ffe600;--tx:#e8ecff;--mu:#9aa3c7;--ln:rgba(0,240,255,.22)}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:radial-gradient(ellipse at 20% -10%,#1b0a3a 0,transparent 55%),var(--bg);color:var(--tx);font:500 18px/1.6 Rajdhani,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}.wrap{max-width:1100px;margin:auto;padding:0 22px}
+h1,h2,h3,.brand,.tag,.btn{font-family:Orbitron,Rajdhani,sans-serif}
+.skip{position:absolute;left:-999px}.skip:focus{left:10px;top:10px;background:var(--cy);color:#000;padding:6px 10px;z-index:99}
+header{position:sticky;top:0;z-index:50;background:rgba(6,3,15,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--ln)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px}
+.brand{font-weight:800;letter-spacing:.08em;font-size:17px}.brand b{color:var(--cy)}.brand i{color:var(--mg);font-style:normal}
+nav{display:flex;gap:6px;flex-wrap:wrap}nav a{padding:6px 12px;font-size:16px;color:var(--mu);border-radius:4px;letter-spacing:.04em}
+nav a:hover{color:var(--cy)}nav a.cta{border:1px solid var(--mg);color:var(--mg)}nav a.cta:hover{background:var(--mg);color:#000}
+.hero{padding:70px 0 50px}.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.tag{display:inline-block;font-size:12px;letter-spacing:.22em;color:var(--cy);border:1px solid var(--ln);padding:5px 12px;margin-bottom:18px}
+h1{font-size:clamp(36px,6vw,66px);line-height:1.02;font-weight:800;text-shadow:0 0 28px rgba(0,240,255,.45)}h1 span{color:var(--mg);display:block;text-shadow:0 0 28px rgba(255,43,214,.5)}
+.lema{font-size:24px;color:var(--cy);margin:16px 0 8px;font-weight:600}.sub{color:var(--mu);max-width:520px}
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0}
+.btn{display:inline-block;padding:14px 26px;font-weight:800;letter-spacing:.1em;font-size:14px;border:1px solid var(--cy);color:var(--cy);cursor:pointer;background:none;transition:.2s}
+.btn.p{background:var(--cy);color:#001014;box-shadow:0 0 24px rgba(0,240,255,.5)}.btn:hover{transform:translateY(-2px);box-shadow:0 0 28px rgba(255,43,214,.6);border-color:var(--mg)}
+.metrics{display:flex;gap:12px;flex-wrap:wrap}.metrics div{border:1px solid var(--ln);background:rgba(13,8,32,.7);padding:10px 16px;min-width:100px}
+.metrics b{display:block;font:800 24px Orbitron,sans-serif;color:var(--ye)}.metrics small{color:var(--mu);font-size:14px}
+.shot{position:relative;aspect-ratio:4/3;border:1px solid var(--cy);box-shadow:0 0 40px rgba(0,240,255,.25),inset 0 0 60px rgba(255,43,214,.12);background:linear-gradient(135deg,#150a33,#06030f);overflow:hidden}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}.shot.noimg img{display:none}
+.shot.noimg::after{content:attr(data-ph);position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;color:var(--mu);font-size:15px}
+.cap{position:absolute;left:0;bottom:0;background:rgba(6,3,15,.8);padding:6px 12px;font:600 12px Orbitron;letter-spacing:.15em;color:var(--cy)}
+section{padding:70px 0;border-top:1px solid var(--ln)}.kick{font:600 13px Orbitron;letter-spacing:.25em;color:var(--mg)}
+h2{font-size:clamp(26px,4vw,40px);margin:8px 0 14px;font-weight:800}h2 b{color:var(--cy)}.lead{color:var(--mu);max-width:680px;margin-bottom:30px}
+.grid{display:grid;gap:18px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g5{grid-template-columns:repeat(5,1fr)}
+.card{border:1px solid var(--ln);background:linear-gradient(160deg,rgba(21,10,51,.8),rgba(13,8,32,.8));padding:22px}
+.card h3{font-size:15px;letter-spacing:.08em;color:var(--cy);margin-bottom:8px}.card p{color:var(--mu);font-size:17px}.card .n{font:800 12px Orbitron;color:var(--mg);letter-spacing:.2em}
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:36px;align-items:center}
+dl{display:grid;gap:12px}dt{font:700 13px Orbitron;color:var(--mg);letter-spacing:.14em}dd{color:var(--tx);margin:0}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.chips span{border:1px solid var(--cy);color:var(--cy);padding:4px 12px;font-size:14px;letter-spacing:.06em}
+.keys{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}.keys div{text-align:center;color:var(--mu);font-size:15px}
+kbd{display:block;min-width:56px;margin-bottom:6px;padding:12px 10px;border:1px solid var(--cy);border-bottom-width:4px;color:var(--cy);font:800 18px Orbitron;background:#0d0820;border-radius:6px}
+.stat{text-align:center}.stat b{display:block;font:800 36px Orbitron;color:var(--ye);text-shadow:0 0 18px rgba(255,230,0,.4)}.stat span{color:var(--mu);font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:16px}th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--ln)}th{font:700 12px Orbitron;color:var(--cy);letter-spacing:.12em}
+.ok{color:#5dffb0}.no{color:var(--mg)}
+.bar{margin:12px 0}.bar p{display:flex;justify-content:space-between;font-size:16px}.bar i{display:block;height:8px;background:#1a1236;margin-top:4px}.bar i b{display:block;height:100%;background:linear-gradient(90deg,var(--cy),var(--mg));box-shadow:0 0 10px var(--cy)}
+.loop{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.loop div{counter-increment:s;border:1px solid var(--ln);padding:16px}.loop div::before{content:"0" counter(s);font:800 22px Orbitron;color:var(--mg);display:block}
+.loop b{font-family:Orbitron;color:var(--cy);font-size:15px}.loop span{display:block;color:var(--mu);font-size:16px}
+.note{font-size:14px;color:var(--mu);margin-top:10px}
+.player{position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--cy);box-shadow:0 0 50px rgba(0,240,255,.25)}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.start{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:linear-gradient(135deg,#150a33,#06030f)}
+.start p{color:var(--mu);margin:10px 0 18px}
+footer{border-top:1px solid var(--ln);padding:34px 0;color:var(--mu);font-size:16px;text-align:center}footer a{color:var(--cy)}
+@media(max-width:860px){.hero .wrap,.split,.g2,.g3,.loop{grid-template-columns:1fr}.g5{grid-template-columns:repeat(2,1fr)}nav a:not(.cta){display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido principal</a>
+<header><div class="wrap">
+<a class="brand" href="#inicio">NEON<b>RUNNER</b> <i>//</i> 0</a>
+<nav aria-label="Principal"><a href="#historia">Historia</a><a href="#personaje">Personaje</a><a href="#mecanicas">Mecánicas</a><a href="#datos">Datos</a><a class="cta" href="#jugar">Jugar ahora</a></nav>
+</div></header>
+
+<main id="contenido">
+<div class="hero" id="inicio"><div class="wrap">
+<div>
+<span class="tag">ENDLESS RUNNER 3D / UNITY WEBGL</span>
+<h1>NEON RUNNER<span>CÓDIGO CERO</span></h1>
+<p class="lema">Corre. Corta. Entrega el código.</p>
+<p class="sub">En Neo-Sector 7, una ciudad vigilada por drones, NOVA lleva un código que puede cambiarlo todo. Salta, agáchate y destruye con tu espada lo que se interponga: la meta es llegar a 5000 puntos sin perder tus tres vidas.</p>
+<div class="btns"><a class="btn p" href="#jugar">JUGAR AHORA</a><a class="btn" href="#historia">Conoce la historia</a></div>
+<div class="metrics"><div><b>5000</b><small>puntos para ganar</small></div><div><b>3</b><small>vidas iniciales</small></div><div><b>↑ ↓ Z</b><small>controles</small></div></div>
+</div>
+<div class="shot noimg" data-ph="Coloca aquí tu captura del juego: img/hero.png"><img src="img/hero.png" alt="NOVA corriendo por la avenida de neón de Neo-Sector 7" onerror="this.parentElement.classList.add('noimg')" onload="this.parentElement.classList.remove('noimg')"><span class="cap">NOVA // UNIDAD 001</span></div>
+</div></div>
+
+<section id="historia"><div class="wrap">
+<span class="kick">01 / HISTORIA</span><h2>LA CIUDAD TE <b>ESTÁ CAZANDO.</b></h2>
+<p class="lead">Una carrera sin frenos por una avenida de neón bajo una autopista elevada, vigilada por drones y naves de patrulla.</p>
+<div class="grid g2">
+<div class="card"><span class="n">CAPÍTULO 01 // CONTEXTO</span><h3>Neo-Sector 7</h3><p>Una megaciudad cyberpunk gobernada por sistemas automatizados. Rascacielos, anuncios de neón y barreras láser vigilan cada calle. Los drones de seguridad patrullan sin descanso y nada se mueve sin ser detectado.</p></div>
+<div class="card"><span class="n">CAPÍTULO 02 // PROBLEMA</span><h3>Un código prohibido</h3><p>NOVA, una androide combatiente, carga el Código Cero, una pieza capaz de desactivar el control de la red. Al cruzar el sector es detectada: drones y naves salen a interceptarla.</p></div>
+<div class="card"><span class="n">CAPÍTULO 03 // OBJETIVO</span><h3>Resistir hasta entregarlo</h3><p>La única salida es hacia adelante. El ritmo se acelera, los obstáculos se vuelven más exigentes y cada segundo suma puntos. La misión termina al llegar a los 5000.</p></div>
+<div class="card"><span class="n">CAPÍTULO 04 // DESENLACE</span><h3>¿Código entregado?</h3><p>Tres oportunidades separan la misión cumplida del sistema apagado. Corta lo que puedas, esquiva el resto y decide cómo termina la carrera.</p></div>
+</div></div></section>
+
+<section id="personaje"><div class="wrap split">
+<div class="shot noimg" style="aspect-ratio:3/4" data-ph="Coloca aquí una imagen de NOVA: img/personaje.png"><img src="img/personaje.jpg" alt="NOVA, androide de combate con espada" onerror="this.parentElement.classList.add('noimg')" onload="this.parentElement.classList.remove('noimg')"><span class="cap">SUJETO 001 // NOVA</span></div>
+<div>
+<span class="kick">02 / PERSONAJE PRINCIPAL</span><h2>CONOCE A <b>NOVA.</b></h2>
+<p class="lead">Una androide de combate diseñada para sobrevivir: velocidad, reflejos y una espada capaz de cortar la tecnología enemiga.</p>
+<dl>
+<div><dt>ROL</dt><dd>Protagonista y corredora de la avenida de Neo-Sector 7, portadora del Código Cero.</dd></div>
+<div><dt>HABILIDADES</dt><dd>Carrera continua, salto preciso, deslizamiento bajo amenazas aéreas y ataque con espada para destruir drones, naves y contenedores.</dd></div>
+<div><dt>ESTÉTICA</dt><dd>Atuendo oscuro de androide, cabello claro y dos espadas. Su silueta contrasta con los neones cian y magenta de la ciudad.</dd></div>
+</dl>
+<div class="chips"><span>Reflejos rápidos</span><span>Espada de combate</span><span>Androide táctica</span></div>
+</div></div></section>
+
+<section id="mecanicas"><div class="wrap">
+<span class="kick">03 / MECÁNICAS Y CONTROLES</span><h2>FÁCIL DE APRENDER. <b>DIFÍCIL DE DOMINAR.</b></h2>
+<p class="lead">NOVA corre sola. Tú decides cuándo saltar, cuándo agacharte y cuándo cortar.</p>
+<div class="grid g2">
+<div class="card"><h3>ESQUEMA DE CONTROL // PC (TECLADO)</h3><div class="keys">
+<div><kbd>↑</kbd>Saltar</div><div><kbd>↓</kbd>Agacharse</div><div><kbd>Z / X</kbd>Espada</div><div><kbd>Espacio</kbd>Espada</div><div><kbd>Enter</kbd>Iniciar</div><div><kbd>R</kbd>Reiniciar</div></div></div>
+<div class="card"><h3>REGLAS DEL SISTEMA</h3><p><b class="ok">Victoria:</b> alcanzar 5000 puntos.<br><b class="no">Derrota:</b> perder las 3 vidas (cada choque resta una; tras un golpe hay 2 s de invulnerabilidad).<br><b style="color:var(--ye)">Puntos:</b> +10 por segundo y +50 por cada obstáculo destruido con la espada.<br><b style="color:var(--cy)">Ritmo:</b> la velocidad sube un 10% cada 15 segundos.</p></div>
+</div>
+<h3 style="font-size:16px;color:var(--cy);margin:30px 0 12px;letter-spacing:.1em">OBSTÁCULOS (7 TIPOS)</h3>
+<div class="card" style="overflow-x:auto;padding:8px 14px"><table>
+<tr><th>Obstáculo</th><th>Altura</th><th>Cómo esquivar</th><th>Espada</th></tr>
+<tr><td>Dron de vigilancia</td><td>Alto</td><td>Agacharse</td><td class="ok">Destruible +50</td></tr>
+<tr><td>Nave patrulla</td><td>Alto</td><td>Agacharse</td><td class="ok">Destruible +50</td></tr>
+<tr><td>Contenedor de datos</td><td>Bajo</td><td>Saltar</td><td class="ok">Destruible +50</td></tr>
+<tr><td>Barrera láser de suelo</td><td>Bajo</td><td>Saltar</td><td class="no">No destruible</td></tr>
+<tr><td>Charco de energía</td><td>Bajo</td><td>Saltar</td><td class="no">No destruible</td></tr>
+<tr><td>Rayo láser horizontal</td><td>Alto</td><td>Agacharse</td><td class="no">No destruible</td></tr>
+<tr><td>Cartel holográfico</td><td>Alto</td><td>Agacharse</td><td class="no">No destruible</td></tr>
+</table></div>
+<p class="note">Todo obstáculo puede esquivarse saltando o agachándose; la espada es una alternativa que da puntos extra.</p>
+</div></section>
+
+<section id="datos"><div class="wrap">
+<span class="kick">04 / DATOS DEL SISTEMA</span><h2>EL JUEGO EN <b>NÚMEROS.</b></h2>
+<p class="lead">Reglas simples y una dificultad que crece segundo a segundo.</p>
+<div class="grid g5">
+<div class="card stat"><b>5000</b><span>Puntos objetivo</span></div><div class="card stat"><b>3</b><span>Vidas iniciales</span></div>
+<div class="card stat"><b>10</b><span>Puntos por segundo</span></div><div class="card stat"><b>+50</b><span>Por obstáculo destruido</span></div>
+<div class="card stat"><b>7</b><span>Tipos de obstáculo</span></div></div>
+<div class="grid g2" style="margin-top:22px">
+<div class="card"><h3>FICHA TÉCNICA</h3><table>
+<tr><td>Género</td><td>Endless runner 3D</td></tr><tr><td>Motor</td><td>Unity (URP) · WebGL</td></tr><tr><td>Modo</td><td>Un jugador</td></tr>
+<tr><td>Perspectiva</td><td>Tercera persona</td></tr><tr><td>Velocidad</td><td>14 → 32 m/s (+10% cada 15 s)</td></tr><tr><td>Plataforma</td><td>Navegador de escritorio</td></tr></table></div>
+<div class="card"><h3>PERFIL DE LA EXPERIENCIA</h3>
+<div class="bar"><p>Dificultad<span>7 / 10</span></p><i><b style="width:70%"></b></i></div>
+<div class="bar"><p>Acción<span>9 / 10</span></p><i><b style="width:90%"></b></i></div>
+<div class="bar"><p>Exploración<span>2 / 10</span></p><i><b style="width:20%"></b></i></div>
+<div class="bar"><p>Historia<span>6 / 10</span></p><i><b style="width:60%"></b></i></div>
+<p class="note">Escala orientativa de diseño (1–10), no medida con jugadores.</p></div></div>
+<h3 style="font-size:16px;color:var(--cy);margin:30px 0 12px;letter-spacing:.1em">BUCLE DE JUEGO</h3>
+<div class="loop"><div><b>CORRE</b><span>Avanza automáticamente.</span></div><div><b>ANTICIPA</b><span>Identifica el obstáculo.</span></div><div><b>ESQUIVA O CORTA</b><span>Salta, agáchate o usa la espada.</span></div><div><b>SUMA</b><span>Acumula puntos y repite.</span></div></div>
+<p class="note">5000 puntos = victoria · 0 vidas = fin de la partida</p>
+</div></section>
+
+<section id="jugar"><div class="wrap">
+<span class="kick">05 / DESPLIEGUE Y EJECUCIÓN</span><h2>EL FUTURO NO ESPERA. <b>TÚ TAMPOCO.</b></h2>
+<p class="lead">Juega directamente en tu navegador. La primera carga puede tardar un poco.</p>
+<div class="player" id="player"><div class="start" id="start"><div><h3 style="font-size:22px">NEON RUNNER: CÓDIGO CERO</h3><p>Pulsa para cargar el juego (Unity WebGL)</p><button class="btn p" id="load">▶ CARGAR JUEGO</button></div></div></div>
+<div class="btns"><button class="btn" id="full">PANTALLA COMPLETA</button><a class="btn" href="Juego/index.html" target="_blank" rel="noopener">ABRIR EN PESTAÑA NUEVA</a></div>
+<div class="grid g2">
+<div class="card"><h3>REQUERIMIENTOS MÍNIMOS</h3><p>Navegador de escritorio actualizado (Chrome, Edge o Firefox) con WebGL 2 activado · teclado · 4 GB de RAM · conexión estable para la primera carga.</p></div>
+<div class="card"><h3>INSTRUCCIONES</h3><p>1) Pulsa «Cargar juego» y espera. 2) Haz clic dentro del juego para activar el teclado y el sonido. 3) Pulsa Enter para iniciar. Si no carga, abre el juego en una pestaña nueva.</p></div>
+</div></div></section>
+</main>
+
+<footer><div class="wrap"><p><b>NEON RUNNER: CÓDIGO CERO</b> © 2026 · Desarrollado por TU NOMBRE · Game Development, Unidad 3</p>
+<p><a href="https://github.com/TU_USUARIO/TU_REPOSITORIO" target="_blank" rel="noopener">Repositorio de GitHub ↗</a> · <a href="#inicio">Volver arriba ↑</a></p>
+<p class="note">Modelo 2B: autor y licencia (completar) · Ciudad cyberpunk: 2Alfiiin · Animaciones: Mixamo · Música y efectos: sintetizados para el proyecto.</p></div></footer>
+
+<script>
+var s=document.getElementById('start'),p=document.getElementById('player');
+document.getElementById('load').onclick=function(){var f=document.createElement('iframe');f.src='Juego/index.html';f.title='NEON RUNNER: Código Cero';f.allow='fullscreen; autoplay';f.allowFullscreen=true;p.appendChild(f);s.remove();f.focus()};
+document.getElementById('full').onclick=function(){(p.requestFullscreen||p.webkitRequestFullscreen||function(){}).call(p)};
+</script>
+</body>
+</html>
