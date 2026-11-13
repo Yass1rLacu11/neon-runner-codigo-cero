@@ -18,6 +18,7 @@ h1,h2,h3,.brand,.tag,.btn{font-family:Orbitron,Rajdhani,sans-serif}
 header{position:sticky;top:0;z-index:50;background:rgba(6,3,15,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--ln)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px}
 .brand{font-weight:800;letter-spacing:.08em;font-size:17px}.brand b{color:var(--cy)}.brand i{color:var(--mg);font-style:normal}
+.dev{font:600 13px Orbitron;letter-spacing:.12em;color:var(--mu);border-left:1px solid var(--ln);padding-left:14px;margin-right:auto;margin-left:14px;white-space:nowrap}.dev b{color:var(--ye)}
 nav{display:flex;gap:6px;flex-wrap:wrap}nav a{padding:6px 12px;font-size:16px;color:var(--mu);border-radius:4px;letter-spacing:.04em}
 nav a:hover{color:var(--cy)}nav a.cta{border:1px solid var(--mg);color:var(--mg)}nav a.cta:hover{background:var(--mg);color:#000}
 .hero{padding:70px 0 50px}.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
@@ -54,14 +55,14 @@ table{width:100%;border-collapse:collapse;font-size:16px}th,td{padding:9px 10px;
 .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.start{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:linear-gradient(135deg,#150a33,#06030f)}
 .start p{color:var(--mu);margin:10px 0 18px}
 footer{border-top:1px solid var(--ln);padding:34px 0;color:var(--mu);font-size:16px;text-align:center}footer a{color:var(--cy)}
-@media(max-width:860px){.hero .wrap,.split,.g2,.g3,.loop{grid-template-columns:1fr}.g5{grid-template-columns:repeat(2,1fr)}nav a:not(.cta){display:none}}
+@media(max-width:860px){.hero .wrap,.split,.g2,.g3,.loop{grid-template-columns:1fr}.g5{grid-template-columns:repeat(2,1fr)}nav a:not([href="#juego1"]):not(.cta){display:none}.dev{display:none}}
 </style>
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido principal</a>
 <header><div class="wrap">
-<a class="brand" href="#inicio">NEON<b>RUNNER</b> <i>//</i> 0</a>
-<nav aria-label="Principal"><a href="#historia">Historia</a><a href="#personaje">Personaje</a><a href="#mecanicas">Mecánicas</a><a href="#datos">Datos</a><a class="cta" href="#jugar">Jugar ahora</a></nav>
+<a class="brand" href="#inicio">NEON<b>RUNNER</b> <i>//</i> 0</a><span class="dev">DEV // <b>OLIVER PAUCARA</b></span>
+<nav aria-label="Principal"><a href="#historia">Historia</a><a href="#personaje">Personaje</a><a href="#mecanicas">Mecánicas</a><a href="#datos">Datos</a><a href="#juego1">Juego 1</a><a class="cta" href="#juego2">Juego 2</a></nav>
 </div></header>
 
 <main id="contenido">
@@ -71,7 +72,7 @@ footer{border-top:1px solid var(--ln);padding:34px 0;color:var(--mu);font-size:1
 <h1>NEON RUNNER<span>CÓDIGO CERO</span></h1>
 <p class="lema">Corre. Corta. Entrega el código.</p>
 <p class="sub">En Neo-Sector 7, una ciudad vigilada por drones, NOVA lleva un código que puede cambiarlo todo. Salta, agáchate y destruye con tu espada lo que se interponga: la meta es llegar a 5000 puntos sin perder tus tres vidas.</p>
-<div class="btns"><a class="btn p" href="#jugar">JUGAR AHORA</a><a class="btn" href="#historia">Conoce la historia</a></div>
+<div class="btns"><a class="btn p" href="#juego1">JUGAR AHORA</a><a class="btn" href="#juego2">JUEGO 2: PAC-MAN</a><a class="btn" href="#historia">Conoce la historia</a></div>
 <div class="metrics"><div><b>5000</b><small>puntos para ganar</small></div><div><b>3</b><small>vidas iniciales</small></div><div><b>↑ ↓ Z</b><small>controles</small></div></div>
 </div>
 <div class="shot noimg" data-ph="Coloca aquí tu captura del juego: img/hero.png"><img src="img/hero.png" alt="NOVA corriendo por la avenida de neón de Neo-Sector 7" onerror="this.parentElement.classList.add('noimg')" onload="this.parentElement.classList.remove('noimg')"><span class="cap">NOVA // UNIDAD 001</span></div>
@@ -144,24 +145,30 @@ footer{border-top:1px solid var(--ln);padding:34px 0;color:var(--mu);font-size:1
 <p class="note">5000 puntos = victoria · 0 vidas = fin de la partida</p>
 </div></section>
 
-<section id="jugar"><div class="wrap">
-<span class="kick">05 / DESPLIEGUE Y EJECUCIÓN</span><h2>EL FUTURO NO ESPERA. <b>TÚ TAMPOCO.</b></h2>
-<p class="lead">Juega directamente en tu navegador. La primera carga puede tardar un poco.</p>
-<div class="player" id="player"><div class="start" id="start"><div><h3 style="font-size:22px">NEON RUNNER: CÓDIGO CERO</h3><p>Pulsa para cargar el juego (Unity WebGL)</p><button class="btn p" id="load">▶ CARGAR JUEGO</button></div></div></div>
-<div class="btns"><button class="btn" id="full">PANTALLA COMPLETA</button><a class="btn" href="Juego/index.html" target="_blank" rel="noopener">ABRIR EN PESTAÑA NUEVA</a></div>
-<div class="grid g2">
-<div class="card"><h3>REQUERIMIENTOS MÍNIMOS</h3><p>Navegador de escritorio actualizado (Chrome, Edge o Firefox) con WebGL 2 activado · teclado · 4 GB de RAM · conexión estable para la primera carga.</p></div>
-<div class="card"><h3>INSTRUCCIONES</h3><p>1) Pulsa «Cargar juego» y espera. 2) Haz clic dentro del juego para activar el teclado y el sonido. 3) Pulsa Enter para iniciar. Si no carga, abre el juego en una pestaña nueva.</p></div>
-</div></div></section>
+<section id="juego1"><div class="wrap">
+<span class="kick">05 / JUEGO 1</span><h2>NEON RUNNER: <b>CÓDIGO CERO</b></h2>
+<p class="lead">Endless runner 3D. Salta, agáchate y corta drones con la espada hasta llegar a 5000 puntos.</p>
+<div class="btns"><button class="btn p" id="s1">▶ START</button><button class="btn" id="f1">PANTALLA COMPLETA</button></div>
+<div class="player" id="p1"><div class="start"><div><h3 style="font-size:20px">Juego en espera</h3><p>Presiona START para iniciar. El juego no se ejecuta hasta que lo pidas.</p></div></div></div>
+<div class="grid g2" style="margin-top:22px"><div class="card"><h3>REQUERIMIENTOS MÍNIMOS</h3><p>Navegador de escritorio actualizado (Chrome, Edge o Firefox) con WebGL 2 activado · teclado · 4 GB de RAM · conexión estable para la primera carga.</p></div>
+<div class="card"><h3>INSTRUCCIONES</h3><p>1) Pulsa START y espera la carga. 2) Haz clic dentro del juego para activar teclado y sonido. 3) Pulsa Enter para iniciar. Controles: ↑ saltar, ↓ agacharse, Z / X / Espacio espada, R reiniciar.</p></div></div></div></section>
+<section id="juego2"><div class="wrap">
+<span class="kick">06 / JUEGO 2</span><h2>PAC-MAN 3D: <b>LABERINTO DE 2B</b></h2>
+<p class="lead">Laberinto estilo Pac-Man con enemigos que patrullan y te persiguen cuando te ven. Recoge todos los puntos y escapa.</p>
+<div class="btns"><button class="btn p" id="s2">▶ START</button><button class="btn" id="f2">PANTALLA COMPLETA</button></div>
+<div class="player" id="p2"><div class="start"><div><h3 style="font-size:20px">Juego en espera</h3><p>Presiona START para iniciar. El juego no se ejecuta hasta que lo pidas.</p></div></div></div>
+<div class="grid g2" style="margin-top:22px"><div class="card"><h3>CÓMO SE JUEGA</h3><p>Recorre el laberinto de 11 × 9 celdas con 2B y recoge los 36 puntos (10 puntos cada uno). Al recogerlos todos la puerta de salida se abre; sal por ella para ganar. Si un enemigo te toca, pierdes.</p></div>
+<div class="card"><h3>CONTROLES</h3><p>Flechas: mover · R: reiniciar · M: silenciar música · V: ver rayos de visión de los enemigos · C: cambiar cámara. Haz clic dentro del juego para activar el teclado.</p></div></div></div></section>
 </main>
 
 <footer><div class="wrap"><p><b>NEON RUNNER: CÓDIGO CERO</b> © 2026 · Desarrollado por OLIVER PAUCARA - LUDWING CUBA - DANILO ARINEZ · Game Development, Unidad 3</p>
-<p><a href="https://github.com/Yass1rLacu11/neon-runner-codigo-cero" target="_blank" rel="noopener">Repositorio de GitHub ↗</a> · <a href="#inicio">Volver arriba ↑</a></p>
+<p><a href="https://github.com/Yass1rLacu11/neon-runner-codigo-cero">Repositorio de GitHub ↗</a> · <a href="#inicio">Volver arriba ↑</a></p></div></footer>
 
 <script>
-var s=document.getElementById('start'),p=document.getElementById('player');
-document.getElementById('load').onclick=function(){var f=document.createElement('iframe');f.src='Juego/index.html';f.title='NEON RUNNER: Código Cero';f.allow='fullscreen; autoplay';f.allowFullscreen=true;p.appendChild(f);s.remove();f.focus()};
-document.getElementById('full').onclick=function(){(p.requestFullscreen||p.webkitRequestFullscreen||function(){}).call(p)};
+function juego(n,ruta,titulo){var box=document.getElementById('p'+n),btn=document.getElementById('s'+n),ph=box.querySelector('.start');
+btn.onclick=function(){var f=box.querySelector('iframe');if(f)f.remove();f=document.createElement('iframe');f.src=ruta;f.title=titulo;f.allow='fullscreen; autoplay';f.allowFullscreen=true;box.appendChild(f);ph.style.display='none';btn.textContent='↻ REINICIAR';f.focus()};
+document.getElementById('f'+n).onclick=function(){(box.requestFullscreen||box.webkitRequestFullscreen||function(){}).call(box)}}
+juego(1,'Juego/index.html','NEON RUNNER: Código Cero');juego(2,'JuegoPacman/index.html','Pac-Man 3D: 2B');
 </script>
 </body>
 </html>
